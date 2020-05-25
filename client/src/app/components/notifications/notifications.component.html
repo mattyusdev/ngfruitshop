@@ -1,0 +1,17 @@
+<div class="container-notifications">
+  <div class="frame">
+    <h1>
+      <span [matBadge]="products" matBadgeOverlap="false" matBadgeColor="accent"
+        >Total products</span
+      >
+    </h1>
+    <h1>
+      <span [matBadge]="orders" matBadgeOverlap="false" matBadgeColor="accent"
+        >Total orders</span
+      >
+    </h1>
+    <h1 *ngIf="_us.isLogged" class="notifications">
+      {{ _us.notification }}
+    </h1>
+  </div>
+</div>

@@ -1,0 +1,122 @@
+<div class="container-order">
+  <div class="frame" *ngIf="!orderSent">
+    <h1>
+      CART DETAILS
+    </h1>
+
+    <div>
+      <mat-form-field class="example-full-width">
+        <mat-label>Search by name...</mat-label>
+        <input
+          (input)="updateSearch($event)"
+          matInput
+          placeholder="Name..."
+          value=""
+        />
+      </mat-form-field>
+    </div>
+
+    <ul *ngIf="_ss.cartInfo">
+      <h3 *ngIf="!_ss.cartInfo.cartItems.length">Not found.</h3>
+
+      <li *ngFor="let c of _ss.cartInfo.cartItems">
+        <h3>
+          <span [innerHTML]="c.product.name | highlight: searchTerm">{{
+            c.product.name
+          }}</span>
+          x {{ c.quantity }}
+        </h3>
+        <span class="spacer"></span>
+        <h3 class="price">${{ c.itemPrice }}</h3>
+      </li>
+    </ul>
+
+    <hr />
+    <div *ngIf="_ss.cartInfo">
+      <h3 class="total">Total: <span class="price"></span></h3>
+      <h2 class="price total">${{ _ss.cartInfo.totalPrice }}</h2>
+
+      <br />
+
+      <button
+        class="back"
+        [routerLink]="['/shop']"
+        mat-flat-button
+        color="primary"
+      >
+        TO SHOP <mat-icon>reply</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="frame" *ngIf="!orderSent">
+    <form [formGroup]="form" (ngSubmit)="openDialog()">
+      <h1>ORDER DETAILS</h1>
+
+      <span class="response" *ngIf="dateResponse.length">{{
+        dateResponse
+      }}</span>
+
+      <mat-form-field class="input">
+        <mat-label>Select city...</mat-label>
+        <mat-select
+          formControlName="city"
+          [value]="_us.userData ? _us.userData.city : null"
+        >
+          <mat-option *ngFor="let c of _us.cities" [value]="c">
+            {{ c }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.controls.city.hasError('required')">
+          City is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="input">
+        <mat-label>Street</mat-label>
+        <input matInput placeholder="Street..." formControlName="street" />
+        <mat-error *ngIf="form.controls.street.hasError('required')">
+          Street is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="input">
+        <mat-label>Choose shipping date</mat-label>
+        <input
+          [matDatepickerFilter]="dateFilter"
+          [min]="minDate"
+          matInput
+          [matDatepicker]="picker"
+          formControlName="arriveDate"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="form.controls.arriveDate.hasError('required')">
+          Shipping date is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <h1 class="payment">PAYMENT</h1>
+
+      <mat-form-field class="input">
+        <mat-label>Credit card</mat-label>
+        <input
+          matInput
+          placeholder="Credit card..."
+          formControlName="creditCard"
+        />
+        <mat-error *ngIf="form.controls.creditCard.hasError('required')">
+          Credit card is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="form.controls.creditCard.hasError('creditCard')">
+          Credit card is <strong>not valid</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <br />
+
+      <button mat-flat-button color="accent">
+        CHECKOUT <mat-icon>payment</mat-icon>
+      </button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="wrraper">
+  <h1>ORDER SENT!</h1>
+  <h3>
+    Order ID: <strong>{{ _ss.orderId }}</strong>
+  </h3>
+  <h4>click <a (click)="download()">here</a> to download the receipt.</h4>
+  <button
+    [routerLink]="['/']"
+    type="button"
+    (click)="onNoClick()"
+    mat-flat-button
+    color="accent"
+  >
+    CONFIRM
+  </button>
+</div>

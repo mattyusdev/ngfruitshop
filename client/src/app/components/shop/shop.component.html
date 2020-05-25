@@ -1,0 +1,5 @@
+<div class="grid-container" *ngIf="_us.userData">
+  <app-cart class="item1" *ngIf="!_us.userData.isAdmin"></app-cart>
+  <app-adminpanel class="item1" *ngIf="_us.userData.isAdmin"></app-adminpanel>
+  <app-products class="item2"></app-products>
+</div>

@@ -1,0 +1,88 @@
+.container-order {
+  background: #1f497d;
+  height: calc(100vh - 64px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+}
+
+.response {
+  display: block;
+  color: tomato;
+}
+
+h1 {
+  opacity: 0.8;
+  font-weight: bold;
+}
+
+.price {
+  font-weight: bold;
+}
+
+.total {
+  display: inline-block;
+  margin: 5px;
+}
+
+.back {
+  margin: 30px;
+}
+
+.frame {
+  display: inline-block;
+  overflow: auto;
+  width: 500px;
+  padding: 20px;
+  height: 500px;
+  background: #fff;
+  text-align: center;
+  margin: 30px;
+}
+
+ul {
+  width: 80%;
+  height: 40%;
+  overflow: auto;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+li {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+}
+
+hr {
+  width: 80%;
+  display: inline-block;
+  text-align: center;
+}
+
+.items {
+  background: #fff;
+  min-height: 200px;
+  min-width: 400px;
+  margin: 20px;
+  padding: 20px;
+}
+
+.input {
+  width: 70%;
+  margin: 5px;
+}
+
+.payment {
+  margin-top: 10px;
+}
+
+form > button {
+  margin: 30px;
+  font-size: 20px;
+  padding: 5px 20px;
+}

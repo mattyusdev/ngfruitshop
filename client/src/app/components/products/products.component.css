@@ -1,0 +1,57 @@
+.container {
+  min-height: calc(100% - 80px);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.search {
+  height: 80px;
+  padding: 10px 40px;
+  display: flex;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.wrapper > button {
+  margin: 10px;
+}
+
+form,
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+
+form > button,
+.search > button,
+input {
+  margin: 0 10px;
+}
+
+hr {
+  border: 0.5px solid #777;
+  opacity: 0.3;
+}
+
+.example-card {
+  width: 150px;
+  margin: 40px;
+  text-align: center;
+}
+
+h3 {
+  text-align: center;
+  margin: 50px;
+}
+
+.header {
+  margin: 10px;
+}
+
+img {
+  height: 170px;
+}

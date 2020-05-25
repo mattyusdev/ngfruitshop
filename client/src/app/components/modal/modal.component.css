@@ -1,0 +1,17 @@
+.wrapper > *,
+h2 {
+    text-align: center;
+}
+
+form {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mat-dialog-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

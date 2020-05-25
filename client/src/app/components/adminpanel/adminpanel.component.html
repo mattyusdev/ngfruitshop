@@ -1,0 +1,164 @@
+<div class="container">
+  <div class="outer">
+    <h1>
+      {{
+        _ss.adminMode == "none"
+          ? "ADMIN PANEL"
+          : _ss.adminMode == "edit"
+          ? "EDIT PRODUCT"
+          : "ADD PRODUCT"
+      }}
+    </h1>
+
+    <div class="frame">
+      <div *ngIf="_ss.adminMode == 'none'">
+        <h2>
+          Select product to edit or add one.
+        </h2>
+
+        <hr />
+      </div>
+
+      <!-- ---------------------------------------------- -->
+
+      <form
+        *ngIf="_ss.adminMode == 'add'"
+        [formGroup]="form"
+        (ngSubmit)="submitAdd()"
+      >
+        <mat-form-field class="input">
+          <mat-label>Product name</mat-label>
+          <input matInput placeholder="Name..." formControlName="name" />
+          <mat-error *ngIf="form.controls.name.hasError('required')">
+            Product name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="input">
+          <mat-label>Select category...</mat-label>
+          <mat-select formControlName="categories">
+            <mat-option *ngFor="let c of _ss.categories" [value]="c._id">
+              {{ c.name }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.controls.categories.hasError('required')">
+            Categories is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="input">
+          <mat-label>Price</mat-label>
+          <input
+            matInput
+            type="number"
+            placeholder="Price..."
+            formControlName="price"
+          />
+          <mat-error *ngIf="form.controls.price.hasError('min')">
+            Price must be <strong>above zero</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <input
+          #addFileInput
+          style="display: none;"
+          mat-flat-button
+          type="file"
+          (change)="onFileChanged($event)"
+        />
+        <button
+          type="button"
+          class="input"
+          mat-flat-button
+          (click)="addFileInput.click()"
+        >
+          {{ _ss.fileName ? _ss.fileName : "Click to upload image... " }}
+          <mat-icon class="icon" *ngIf="!_ss.fileName">add_to_photos</mat-icon>
+        </button>
+
+        <button mat-flat-button color="accent">
+          ADD
+        </button>
+      </form>
+
+      <!-- ---------------------------------------------- -->
+
+      <form *ngIf="_ss.adminMode == 'edit'" (ngSubmit)="submitEdit()">
+        <mat-form-field class="input">
+          <mat-label>Product name</mat-label>
+          <input
+            matInput
+            placeholder="Name..."
+            [(ngModel)]="_ss.editProductInfo.name"
+            [ngModelOptions]="{ standalone: true }"
+          />
+          <mat-error *ngIf="form.controls.name.hasError('required')">
+            Product name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="input">
+          <mat-label>Select category...</mat-label>
+          <mat-select
+            [(ngModel)]="_ss.editProductInfo.categories"
+            [ngModelOptions]="{ standalone: true }"
+          >
+            <mat-option *ngFor="let c of _ss.categories" [value]="c._id">
+              {{ c.name }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.controls.categories.hasError('required')">
+            Categories is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="input">
+          <mat-label>Price</mat-label>
+          <input
+            matInput
+            type="number"
+            placeholder="Price..."
+            [(ngModel)]="_ss.editProductInfo.price"
+            [ngModelOptions]="{ standalone: true }"
+          />
+          <mat-error *ngIf="form.controls.price.hasError('min')">
+            Price must be <strong>above zero</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <input
+          #editFileInput
+          style="display: none;"
+          mat-flat-button
+          type="file"
+          (change)="onFileChanged($event)"
+        />
+        <button
+          type="button"
+          class="input"
+          mat-flat-button
+          (click)="editFileInput.click()"
+        >
+          {{ _ss.fileName ? _ss.fileName : "Click to upload image..." }}
+          <mat-icon class="icon" *ngIf="!_ss.fileName">add_to_photos</mat-icon>
+        </button>
+
+        <br />
+
+        <button mat-flat-button color="primary">
+          SAVE
+        </button>
+      </form>
+    </div>
+    <button
+      class="add"
+      mat-flat-button
+      color="accent"
+      *ngIf="_ss.adminMode == 'edit' || _ss.adminMode == 'none'"
+      (click)="addMode()"
+    >
+      ADD PRODUCT
+      <mat-icon>add_circle</mat-icon>
+    </button>
+  </div>
+</div>

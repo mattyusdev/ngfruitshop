@@ -1,0 +1,20 @@
+.container-notifications {
+  height: calc(100vh - 64px);
+  background: #8db4e2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.frame {
+  width: 80%;
+  text-align: center;
+}
+
+h1 {
+  color: #fff;
+}
+
+.notifications {
+  color: yellow;
+}

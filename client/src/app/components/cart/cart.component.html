@@ -1,0 +1,42 @@
+<div class="container">
+  <div>
+    <h1>
+      MY CART
+      <span
+        class="badge"
+        [matBadge]="_ss.cartInfo ? _ss.cartInfo.cartItems.length : 0"
+        matBadgeColor="accent"
+      ></span>
+    </h1>
+    <div class="items">
+      <h2 *ngIf="!_ss.cartInfo">Your cart is empty.</h2>
+      <ul *ngIf="_ss.cartInfo">
+        <button class="remove" mat-flat-button (click)="removeAllItems()">
+          CLEAR ALL
+        </button>
+        <li *ngFor="let c of _ss.cartInfo.cartItems">
+          <h3>{{ c.product.name }} x {{ c.quantity }}</h3>
+          <span class="spacer"></span>
+          <h3 class="price">${{ c.itemPrice }}</h3>
+          <button mat-flat-button (click)="removeItem(c._id)">
+            <mat-icon color="accent">cancel</mat-icon>
+          </button>
+        </li>
+      </ul>
+      <hr />
+      <div *ngIf="_ss.cartInfo">
+        <h3>Total:</h3>
+        <h2 class="price">${{ _ss.cartInfo.totalPrice }}</h2>
+      </div>
+    </div>
+    <button
+      [routerLink]="['/order']"
+      *ngIf="_ss.cartInfo"
+      class="order"
+      mat-flat-button
+      color="accent"
+    >
+      ORDER
+    </button>
+  </div>
+</div>

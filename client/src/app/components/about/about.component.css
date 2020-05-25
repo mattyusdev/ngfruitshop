@@ -1,0 +1,28 @@
+.container-about {
+  height: calc(100vh - 64px);
+  background: #538dd5;
+  /* text-align: center; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header {
+  font-size: 30px;
+  font-weight: 500;
+}
+
+span {
+  color: #ff4081;
+}
+
+h1 {
+  color: #fff;
+  padding: 40px;
+  text-align: center;
+}
+
+h2 {
+  color: #fff;
+  text-align: center;
+}

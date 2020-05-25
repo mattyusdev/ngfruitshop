@@ -1,0 +1,18 @@
+.item1 {
+  grid-area: cart;
+  resize: horizontal;
+  overflow: hidden;
+  min-width: 450px;
+  max-width: 50vw;
+  width: 600px;
+}
+.item2 {
+  grid-area: products;
+  overflow: auto;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-areas: "cart products products";
+  height: calc(100vh - 64px);
+}

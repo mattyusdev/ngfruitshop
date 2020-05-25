@@ -1,0 +1,30 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="wrraper">
+    <h2>Select {{ _ss.productInfo.name }} quantity</h2>
+    <div mat-dialog-content>
+      <mat-form-field class="example-full-width">
+        <mat-label>Quantity</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder="Quantity"
+          formControlName="quantity"
+          value="1"
+        />
+        <mat-error *ngIf="form.controls.quantity.hasError('min')">
+          Quantity must be above <strong>zero.</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <h2>${{ form.value.quantity * _ss.productInfo.price }}</h2>
+    </div>
+    <div mat-dialog-actions>
+      <button type="submit" mat-flat-button color="accent">
+        ADD
+      </button>
+      <button type="button" mat-flat-button (click)="onNoClick()">
+        CANCEL
+      </button>
+    </div>
+  </div>
+</form>

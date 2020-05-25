@@ -1,0 +1,89 @@
+<div class="search">
+  <div class="wrapper">
+    <button
+      type="button"
+      mat-flat-button
+      [disabled]="c.name.toLocaleLowerCase() == activeCategory ? true : false"
+      *ngFor="let c of _ss.categories; let i = index"
+      (click)="goToCategory(c.name)"
+    >
+      {{ c.name }}
+    </button>
+  </div>
+
+  <span class="example-spacer"></span>
+
+  <form [formGroup]="form" (ngSubmit)="submitSearch()">
+    <div>
+      <mat-form-field class="example-full-width">
+        <mat-label>Search by name...</mat-label>
+        <input
+          matInput
+          placeholder="Name..."
+          formControlName="name"
+          value="1"
+        />
+        <mat-error *ngIf="form.controls.name.hasError('required')">
+          Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <button mat-flat-button type="submit">
+        SEARCH
+      </button>
+      <button mat-flat-button color="primary" (click)="resetSearch()">
+        RESET
+      </button>
+    </div>
+  </form>
+</div>
+
+<hr />
+
+<div *ngIf="_ss.products.length" class="container">
+  <mat-card *ngFor="let p of _ss.products" class="example-card">
+    <div class="header">
+      <h2>{{ p.name }}</h2>
+      <span *ngFor="let c of p.categories; let i = index"
+        >{{ c.name }} {{ i != p.categories.length - 1 ? "| " : null }}</span
+      >
+    </div>
+    <a
+      href="https://www.freepik.com/free-vector/fruits-icons-collection_1041748.htm"
+      target="_blank"
+    >
+      <img
+        mat-card-image
+        [src]="
+          _ss.change
+            ? _ss.editProductInfo._id == p._id
+              ? getLinkPicture(api + p.image)
+              : api + p.image
+            : api + p.image
+        "
+        alt="Food vector created by photoroyalty - www.freepik.com"
+    /></a>
+    <mat-card-content>
+      <mat-card-title>${{ p.price }}</mat-card-title>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        *ngIf="!_us.userData.isAdmin"
+        mat-flat-button
+        color="accent"
+        (click)="openDialog(p._id, p.name, p.price)"
+      >
+        ADD <mat-icon>shopping_cart</mat-icon>
+      </button>
+      <button
+        *ngIf="_us.userData.isAdmin"
+        mat-flat-button
+        color="accent"
+        (click)="editProductMode(p)"
+      >
+        EDIT <mat-icon>edit</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+<h3 *ngIf="!_ss.products.length">Not found...</h3>

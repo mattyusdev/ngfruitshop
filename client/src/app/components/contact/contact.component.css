@@ -1,0 +1,28 @@
+.container-contact {
+  background: #1f497d;
+  height: calc(100vh - 64px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+}
+
+.frame {
+  width: 400px;
+  padding: 30px;
+  background: #fff;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  font-weight: bold;
+  opacity: 0.7;
+}
+
+.info {
+  font-weight: 500;
+  opacity: 0.7;
+}

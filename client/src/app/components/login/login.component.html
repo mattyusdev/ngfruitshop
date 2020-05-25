@@ -1,0 +1,36 @@
+<div class="container">
+  <form *ngIf="!_us.isLogged" [formGroup]="form" (ngSubmit)="submitHandler()">
+    <h1>LOGIN</h1>
+    <span class="response" *ngIf="_us.loginResponse.length">{{
+      _us.loginResponse
+    }}</span>
+    <mat-form-field class="input">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="Email..." value="" formControlName="email" />
+    </mat-form-field>
+    <mat-form-field class="input">
+      <mat-label>Password</mat-label>
+      <input
+        type="password"
+        matInput
+        placeholder="Password..."
+        value=""
+        formControlName="password"
+      />
+    </mat-form-field>
+
+    <h4>Not a user? <a [routerLink]="['register']">register</a></h4>
+
+    <button mat-flat-button color="accent">LOGIN</button>
+  </form>
+
+  <button
+    [routerLink]="['shop']"
+    *ngIf="_us.isLogged"
+    class="start"
+    mat-flat-button
+    color="accent"
+  >
+    {{ _us.resume ? "RESUME SHOPPING" : "START SHOPPING" }}
+  </button>
+</div>

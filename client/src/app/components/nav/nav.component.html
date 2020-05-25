@@ -1,0 +1,46 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Ng Shop</span>
+    <span class="spacer">|</span>
+    <span *ngIf="!_us.isLogged" class="hello">Hello guest</span>
+    <span *ngIf="_us.isLogged" class="hello"
+      >Welcome {{ _us.userData.firstName + " " + _us.userData.lastName }}</span
+    >
+    <span class="example-spacer"></span>
+    <button
+      *ngIf="_us.userData ? (_us.userData.isAdmin ? false : true) : true"
+      [routerLink]="['']"
+      mat-flat-button
+      color="primary"
+    >
+      Home
+    </button>
+    <button
+      *ngIf="_us.isLogged"
+      [routerLink]="['shop']"
+      mat-flat-button
+      color="primary"
+    >
+      Shop
+    </button>
+    <button
+      *ngIf="!_us.isLogged"
+      [routerLink]="['register']"
+      mat-flat-button
+      color="primary"
+    >
+      Register
+    </button>
+    <button [routerLink]="['contact']" mat-flat-button color="primary">
+      Contact
+    </button>
+    <button
+      (click)="logOut()"
+      *ngIf="_us.isLogged"
+      mat-flat-button
+      color="accent"
+    >
+      LOGOUT
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>

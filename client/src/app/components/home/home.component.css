@@ -1,0 +1,16 @@
+.item1 {
+  grid-area: login;
+}
+.item2 {
+  grid-area: about;
+}
+.item3 {
+  grid-area: nots;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-areas: "login about nots";
+  grid-template-columns: 1fr 1fr 1fr;
+  height: calc(100vh - 64px);
+}
